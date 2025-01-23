@@ -1,0 +1,35 @@
+{% extends 'flowers/base.html' %}
+{% block title %}Быстрый заказ{% endblock %}
+
+{% block content %}
+<h2>Быстрый заказ</h2>
+{% if not user.is_authenticated %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="bouquet_id" value="{{ selected_bouquet.id }}">
+    <p>Букет: {{ selected_bouquet.name }}</p>
+    <p>Цена: {{ selected_bouquet.price }}</p>
+    <label for="quantity">Количество:</label>
+    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+    <h3>Контактные данные</h3>
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Электронная почта:</label>
+    <input type="email" id="email" name="email">
+    <label for="phone">Телефон:</label>
+    <input type="tel" id="phone" name="phone" required>
+    <label for="address">Адрес доставки:</label>
+    <textarea id="address" name="address" required></textarea>
+    <button type="submit" class="btn btn-primary">Оформить заказ</button>
+</form>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+{% else %}
+    <p>Вы вошли в систему как {{ user.username }}</p>
+    <p>Заказывайте букеты через <a href="{% url 'orders:create_order' %}">форму заказа</a>.</p>
+{% endif %}
+
+{% endblock %}

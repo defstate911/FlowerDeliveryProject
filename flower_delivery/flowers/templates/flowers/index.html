@@ -1,0 +1,35 @@
+{% extends 'flowers/base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h3 class="text-center">Добро пожаловать, {{ user.username }}!</h3>
+    {% else %}
+        <h3 class="text-center">Добро пожаловать в наш магазин цветов!</h3>
+    {% endif %}
+
+    <h2 class="text-center mb-4">Каталог букетов</h2>
+    <div class="row">
+
+        {% for bouquet in bouquets %}
+
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ bouquet.image.url|default:'/static/flowers/img/default.jpg' }}" class="card-img-top" alt="{{ bouquet.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ bouquet.name }}</h5>
+                    <p class="card-text">Цена: {{ bouquet.price }} руб.</p>
+                    <a href="{% url 'orders:order_type_selection' %}?bouquet_id={{ bouquet.id }}" class="btn btn-primary">Заказать</a>
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+            <p>Букеты не найдены.</p>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали заказа</title>
+</head>
+<body>
+    <h1>Детали заказа №{{ order.id }}</h1>
+    <p>Создан: {{ order.created_at|date:"d M Y H:i" }}</p>
+    <p>Обновлен: {{ order.updated_at|date:"d M Y H:i" }}</p>
+    <p>Статус: {{ order.get_status_display }}</p>
+    <h2>Товары:</h2>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.quantity }} x {{ item.bouquet.name }} — {{ item.bouquet.price }} ₽</li>
+        {% empty %}
+            <li>Нет товаров в заказе.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'orders:order_list' %}">Назад к списку заказов</a>
+</body>
+</html>

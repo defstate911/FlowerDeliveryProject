@@ -1,0 +1,66 @@
+/* Общий стиль страницы */
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Хедер */
+.header {
+    background-color: #e3f2fd;
+    color: #333;
+    border-bottom: 2px solid #1976d2;
+}
+
+.header h1 {
+    color: #1976d2;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.header p {
+    color: #555;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Футер */
+.footer {
+    background-color: #e3f2fd;
+    color: #555;
+    border-top: 2px solid #1976d2;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* Карточки букетов */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #1976d2;
+    border-color: #1976d2;
+}
+
+.btn-primary:hover {
+    background-color: #125ca0;
+    border-color: #125ca0;
+}

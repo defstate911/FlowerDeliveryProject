@@ -1,0 +1,28 @@
+{% extends 'flowers/base.html' %}
+{% block title %}Подтверждение заказа{% endblock %}
+
+{% block content %}
+    <h2>Ваш заказ оформлен!</h2>
+    <p>Спасибо за заказ, {{ order.name }}!</p>
+    <p>Контактные данные:</p>
+    <ul>
+        <li>Email: {{ order.email }}</li>
+        <li>Телефон: {{ order.phone }}</li>
+        <li>Адрес доставки: {{ order.address }}</li>
+    </ul>
+    <h3>Детали заказа:</h3>
+    <ul>
+    {% for item in order.items.all %}
+
+
+        <li>Букет: {{ item.bouquet.name }}</li>
+        <li>Количество: {{ item.quantity }}</li>
+        <li>Цена: {{ item.bouquet.price }} ₽</li>
+
+        <li>Итоговая стоимость: {{ item.total_price }} ₽</li>
+
+    {% endfor %}
+    </ul>
+        <p><strong>Общая стоимость заказа:</strong> {{ order.get_total_cost }} ₽</p>
+        <a href="{% url 'flowers:home' %}" class="btn btn-primary">Вернуться на главную</a>
+{% endblock %}

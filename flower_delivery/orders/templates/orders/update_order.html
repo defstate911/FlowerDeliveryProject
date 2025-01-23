@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обновление заказа</title>
+</head>
+<body>
+    <h1>Обновление заказа №{{ order.id }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="status">Статус:</label>
+        <select name="status" id="status">
+            <option value="pending" {% if order.status == "pending" %}selected{% endif %}>В обработке</option>
+            <option value="completed" {% if order.status == "completed" %}selected{% endif %}>Завершён</option>
+            <option value="canceled" {% if order.status == "canceled" %}selected{% endif %}>Отменён</option>
+        </select>
+        <br>
+        <button type="submit">Сохранить изменения</button>
+    </form>
+    <a href="{% url 'orders:order_detail' order.id %}">Назад к деталям заказа</a>
+</body>
+</html>

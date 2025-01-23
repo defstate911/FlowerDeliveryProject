@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои заказы</title>
+</head>
+<body>
+    <h1>Мои заказы</h1>
+    <a href="{% url 'orders:create_order' %}">Создать новый заказ</a>
+    <ul>
+        {% for order in orders %}
+            <li>
+                <a href="{% url 'orders:order_detail' order.id %}">Заказ №{{ order.id }}</a> —
+                Статус: {{ order.get_status_display }} — Создан: {{ order.created_at|date:"d M Y H:i" }}
+            </li>
+        {% empty %}
+            <li>У вас пока нет заказов.</li>
+        {% endfor %}
+    </ul>
+    <!-- Кнопка для возврата на главную страницу -->
+    <a href="{% url 'flowers:home' %}" class="btn btn-primary">Вернуться на главную</a>
+</body>
+</html>
